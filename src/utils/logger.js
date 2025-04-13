@@ -7,16 +7,15 @@ const logger = createLogger({
     format.json()
   ),
   transports: [
+    // Console transport (for development and production)
     new transports.Console(),
+    // File transport (writes logs to a file in production)
     new transports.File({ filename: 'logs/app.log' })
   ]
 });
 
-// Handle unhandled exceptions and rejections.
-logger.exceptions.handle(
-  new transports.File({ filename: 'logs/exceptions.log' })
-);
-
+// Handle uncaught exceptions and unhandled promise rejections
+logger.exceptions.handle(new transports.File({ filename: 'logs/exceptions.log' }));
 process.on('unhandledRejection', (ex) => {
   throw ex;
 });
