@@ -138,17 +138,11 @@ server {
     },
     registerController
   );
+  ```
 
-    [
-      body('email').isEmail(),
-      body('password').isLength({ min: 6 })
-    ],
-    (req, res, next) => {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-      }
-      next();
-    },
-    registerController
-  );
+### 10. Improvements
+
+- Consider adding `service` layers to isolate business logic from controller and route files.
+- Missing: Input validation and sanitization for registration and login (e.g., using express-validator or Joi).
+- Recommended Change: Add middleware to validate email format and enforce password complexity.
+- 

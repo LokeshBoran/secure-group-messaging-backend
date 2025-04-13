@@ -1,5 +1,6 @@
 const crypto = require("crypto");
 const { aesKey, aesIv } = require("../config/config");
+const logger = require('./logger');
 
 /**
  * Encrypts a message using AES-128 encryption in CBC mode.
@@ -20,7 +21,7 @@ const encryptMessage = (message) => {
   return encrypted;
   }
   catch (error) {
-    console.error("Encryption error:", error);
+    logger.error('Encryption error:', error);
     throw new Error("Encryption failed");
   }
 };
@@ -44,7 +45,7 @@ const decryptMessage = (encryptedMessage) => {
   return decrypted;
   }
   catch (error) {
-    console.error("Decryption error:", error);
+    logger.error("Decryption error:", error);
     throw new Error("Decryption failed");
   }
 };
