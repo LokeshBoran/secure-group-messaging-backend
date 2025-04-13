@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now, index: true }
 });
 
 module.exports = mongoose.model("User", UserSchema);

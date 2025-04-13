@@ -13,14 +13,14 @@ const PrivateLeaveLogSchema = new Schema({
 
 const GroupSchema = new Schema({
   name: { type: String, required: true },
-  type: { type: String, enum: ["open", "private"], required: true },
+  type: { type: String, enum: ["open", "private"], required: true, index: true },
   maxMembers: { type: Number, min: 2, required: true },
   owner: { type: Schema.Types.ObjectId, ref: "User", required: true },
   members: [{ type: Schema.Types.ObjectId, ref: "User" }],
   joinRequests: [JoinRequestSchema],
   bannedMembers: [{ type: Schema.Types.ObjectId, ref: "User" }],
   privateLeaveLog: [PrivateLeaveLogSchema],
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now, index: true }
 });
 
 module.exports = mongoose.model("Group", GroupSchema);
