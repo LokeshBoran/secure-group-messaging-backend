@@ -17,8 +17,14 @@ const connectDB = async () => {
   } catch (error) {
     // Log any errors that occur during the connection process
     console.error("MongoDB connection error:", error);
-    // Exit the application with a status code of 1 if there is a connection error
-    process.exit(1);
+    // If running in test mode, throw error instead of exiting,
+    // so that Jest can report the error properly.
+    if (process.env.NODE_ENV === "test") {
+      throw error;
+    } else {
+      // Exit the application with a status code of 1 if there is a connection error
+      process.exit(1);
+    }
   }
 };
 
