@@ -8,6 +8,7 @@ const { aesKey, aesIv } = require("../config/config");
  * @returns {string} The encrypted message in hexadecimal format.
  */
 const encryptMessage = (message) => {
+  try {
   // Create a new cipher using AES-128-CBC algorithm with the specified key and IV
   const cipher = crypto.createCipheriv("aes-128-cbc", Buffer.from(aesKey, "utf8"), Buffer.from(aesIv, "utf8"));
   
@@ -17,6 +18,11 @@ const encryptMessage = (message) => {
   
   // Return the encrypted message
   return encrypted;
+  }
+  catch (error) {
+    console.error("Encryption error:", error);
+    throw new Error("Encryption failed");
+  }
 };
 
 /**
@@ -26,6 +32,7 @@ const encryptMessage = (message) => {
  * @returns {string} The decrypted plaintext message.
  */
 const decryptMessage = (encryptedMessage) => {
+  try {
   // Create a new decipher using AES-128-CBC algorithm with the specified key and IV
   const decipher = crypto.createDecipheriv("aes-128-cbc", Buffer.from(aesKey, "utf8"), Buffer.from(aesIv, "utf8"));
   
@@ -35,6 +42,11 @@ const decryptMessage = (encryptedMessage) => {
   
   // Return the decrypted message
   return decrypted;
+  }
+  catch (error) {
+    console.error("Decryption error:", error);
+    throw new Error("Decryption failed");
+  }
 };
 
 module.exports = { encryptMessage, decryptMessage };
