@@ -1,0 +1,408 @@
+{
+    "info": {
+      "_postman_id": "fa2b6b50-0c99-4113-8d0d-8a5b64d2b7e3",
+      "name": "Secure Group Messaging API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Register User",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123\"\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/api/auth/register",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "auth",
+              "register"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Login User",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123\"\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/api/auth/login",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "auth",
+              "login"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Create Group",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Test Group\",\n  \"type\": \"open\",\n  \"maxMembers\": 10\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/api/groups",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get Groups",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "url": {
+            "raw": "{{base_url}}/api/groups",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Join Group",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "url": {
+            "raw": "{{base_url}}/api/groups/{{groupId}}/join",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups",
+              "{{groupId}}",
+              "join"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Approve Join Request",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userId\": \"{{userIdToApprove}}\"\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/api/groups/{{groupId}}/approve",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups",
+              "{{groupId}}",
+              "approve"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Leave Group",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "url": {
+            "raw": "{{base_url}}/api/groups/{{groupId}}/leave",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups",
+              "{{groupId}}",
+              "leave"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Banish Member",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userId\": \"{{userIdToRemove}}\"\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/api/groups/{{groupId}}/banish",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups",
+              "{{groupId}}",
+              "banish"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Transfer Ownership",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"newOwnerId\": \"{{newOwnerId}}\"\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/api/groups/{{groupId}}/transfer",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups",
+              "{{groupId}}",
+              "transfer"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Delete Group",
+        "request": {
+          "method": "DELETE",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "url": {
+            "raw": "{{base_url}}/api/groups/{{groupId}}",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups",
+              "{{groupId}}"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Send Message",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"content\": \"Hello everyone!\"\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/api/messages/{{groupId}}",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "messages",
+              "{{groupId}}"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get Messages",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "url": {
+            "raw": "{{base_url}}/api/messages/{{groupId}}",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "messages",
+              "{{groupId}}"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Add Member",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Bearer {{jwt_token}}"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"email\": \"newmember@example.com\"\n}"
+          },
+          "url": {
+            "raw": "{{base_url}}/api/groups/{{groupId}}/addMember",
+            "host": [
+              "{{base_url}}"
+            ],
+            "path": [
+              "api",
+              "groups",
+              "{{groupId}}",
+              "addMember"
+            ]
+          }
+        },
+        "response": []
+      }
+    ],
+    "variable": [
+      {
+        "key": "base_url",
+        "value": "http://localhost:3033"
+      },
+      {
+        "key": "jwt_token",
+        "value": ""
+      },
+      {
+        "key": "groupId",
+        "value": ""
+      },
+      {
+        "key": "userIdToApprove",
+        "value": ""
+      },
+      {
+        "key": "userIdToRemove",
+        "value": ""
+      },
+      {
+        "key": "newOwnerId",
+        "value": ""
+      }
+    ]
+  }
+  
