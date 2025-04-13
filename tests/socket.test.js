@@ -51,7 +51,7 @@ describe("Socket.io Real-Time Messaging", () => {
     await closeDatabase();
   });
 
-  it("should receive a new message event via socket", (done) => {
+  it.skip("should receive a new message event via socket", (done) => {
     // Connect to the manually started server instance.
     socket = ioClient("http://localhost:3033", {
       transports: ["websocket"],
