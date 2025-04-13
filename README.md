@@ -28,7 +28,7 @@ This project is the backend for a secure group messaging system. It supports use
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://your-repo-url.git
+   git clone git@github.com:LokeshBoran/secure-group-messaging-backend.git
    cd secure-group-messaging-backend
 2. ```bash
     npm install
